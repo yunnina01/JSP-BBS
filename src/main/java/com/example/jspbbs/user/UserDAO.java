@@ -1,4 +1,4 @@
-package user;
+package com.example.jspbbs.user;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

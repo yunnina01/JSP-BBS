@@ -6,8 +6,11 @@
     <title>JSP-BBS</title>
 </head>
 <body>
+    <%
+        session.invalidate();
+    %>
     <script>
-        location.href = 'main.jsp'
+        location.href = 'main.jsp';
     </script>
 </body>
 </html>
