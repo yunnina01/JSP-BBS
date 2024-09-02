@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width", initial-scale="1">
     <title>JSP-BBS</title>
     <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/custom.css">
     <style type="text/css">
         a, a:hover {
           color: #000000;

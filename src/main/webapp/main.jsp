@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width", initial-scale="1">
     <title>JSP-BBS</title>
     <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
     <%
@@ -60,6 +61,42 @@
             %>
         </div>
     </nav>
+    <div class="container">
+        <div class="jumbotron">
+            <div class="container">
+                <h1>웹 사이트 소개</h1>
+                <p>이 웹 사이트는 Bootstrap으로 만든 JSP 웹 사이트 입니다.</p>
+                <p>디자인 템플릿으로 Bootstrap을 사용했습니다.</p>
+                <a href="#" class="btn btn-primary btn-pull" role="button">자세히 알아보기</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="myCarousel" class="carousel" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="images/1.jpg">
+                </div>
+                <div class="item">
+                    <img src="images/2.jpg">
+                </div>
+                <div class="item">
+                    <img src="images/3.jpg">
+                </div>
+            </div>
+            <a href="#myCarousel" class="left carousel-control" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a href="#myCarousel" class="right carousel-control" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
 </body>
