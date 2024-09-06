@@ -153,4 +153,28 @@ public class BbsDAO {
         }
         return -1;  // 데이터베이스 오류
     }
+
+    public ArrayList<Bbs> search(String bbsTitle) {
+        String SQL = "SELECT * FROM BBS WHERE bbsTitle LIKE ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
+        ArrayList<Bbs> bbsList = new ArrayList<>();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, "%" + bbsTitle + "%");
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Bbs bbs = new Bbs();
+                bbs.setBbsID(rs.getInt(1));
+                bbs.setBbsTitle(rs.getString(2));
+                bbs.setUserID(rs.getString(3));
+                bbs.setBbsDate(rs.getString(4));
+                bbs.setBbsContent(rs.getString(5));
+                bbs.setBbsAvailable(rs.getInt(6));
+                bbsList.add(bbs);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(bbsList);
+        return bbsList;
+    }
 }

@@ -13,10 +13,35 @@
     <link rel="stylesheet" href="css/custom.css">
     <style type="text/css">
         a, a:hover {
-          color: #000000;
-          text-decoration: none;
+            color: #000000;
+            text-decoration: none;
         }
     </style>
+    <script type="text/javascript">
+        let request = new XMLHttpRequest();
+        function searchFunction() {
+            request.open("POST", "./BbsSearchServlet?bbsTitle="
+                + encodeURIComponent(document.getElementById("bbsTitle").value), true);
+            request.onreadystatechange = searchProcess;
+            request.send(null);
+        }
+
+        function searchProcess() {
+            let table = document.getElementById("ajaxTable");
+            table.innerHTML = "";
+            if (request.readyState == 4 && request.status == 200) {
+                let object = eval('(' + request.responseText + ')');
+                let result = object.result;
+                for (let i = 0; i < result.length; i++) {
+                    let row = table.insertRow();
+                    for (let j = 0; j < result[i].length; j++) {
+                        let cell = row.insertCell(j);
+                        cell.innerHTML = result[i][j].value;
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body>
     <%
@@ -75,6 +100,14 @@
         </div>
     </nav>
     <div class="container">
+        <div class="form-group row pull-right">
+            <div class="col-xs-8">
+                <input id="bbsTitle" type="text" class="form-control" size="20" onkeyup="searchFunction();">
+            </div>
+            <div class="col-xs-2">
+                <button type="button" class="btn btn-primary" onclick="searchFunction();">검색</button>
+            </div>
+        </div>
         <div class="row">
             <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
                 <thead>
@@ -85,7 +118,7 @@
                         <th style="background-color: #eeeeee; text-align: center;">작성시간</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="ajaxTable">
                     <%
                         BbsDAO bbsDAO = new BbsDAO();
                         ArrayList<Bbs> bbsList = bbsDAO.getList(pageNumber);
